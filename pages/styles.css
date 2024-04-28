@@ -1,0 +1,21 @@
+body {
+  background-color: #B5B5B5;
+  color: #000000;
+  font-size: 32px;
+}
+
+h1 {
+  word-spacing: 6px;
+  font-size: 64px;
+}
+
+button {
+  background-color: #B5B5B5;
+  color: #000000;
+  padding: 6px;
+  letter-spacing: 2px;
+  font-size: 32px;
+
+  border-bottom: 6px solid #A0A0A0;
+  border-bottom-color: #808080;
+}
