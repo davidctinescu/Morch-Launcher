@@ -14,7 +14,7 @@ public class App {
     private String[] versions;
 
     public App() {
-        frame = new JFrame("morch launcher");
+        frame = new JFrame("Morch Launcher");
         frame.setSize(300, 150);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -36,17 +36,13 @@ public class App {
 
     private String[] getVersions() {
         List<String> versionList = new ArrayList<>();
-        String path = new File("").getAbsolutePath();
-        File versionsDir = new File(path + "/resources");
-        System.out.println("yes, exists!: " +versionsDir.toString());
-        
+        File projectDir = new File("").getAbsoluteFile().getParentFile().getParentFile();
+        File versionsDir = new File(projectDir.getAbsolutePath() + "/resources/");
         if (versionsDir.exists() && versionsDir.isDirectory()) {
             File[] versionFolders = versionsDir.listFiles(File::isDirectory);
-            System.out.println("yes, exists!: " +versionFolders.toString());
             if (versionFolders != null) {
                 for (File versionFolder : versionFolders) {
                     File[] jarFiles = versionFolder.listFiles((dir, name) -> name.endsWith(".jar"));
-                    System.out.println("yes, exists!: " +jarFiles.toString());
                     if (jarFiles != null && jarFiles.length > 0) {
                         versionList.add(versionFolder.getName());
                     }
@@ -59,10 +55,11 @@ public class App {
 
     private void launchMinecraft() {
         String selectedVersion = (String) versionComboBox.getSelectedItem();
-        String jarPath = new File("").getAbsolutePath() + "/resources/" + selectedVersion + "/" + selectedVersion + ".jar";
+        File projectDir = new File("").getAbsoluteFile().getParentFile().getParentFile();
+        File jarPath = new File(projectDir.getAbsolutePath() + "/resources/" + selectedVersion + "/" + selectedVersion + ".jar");
 
         try {
-            Runtime.getRuntime().exec("/usr/bin/java -jar " + jarPath);
+            Runtime.getRuntime().exec("java -jar " + jarPath);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(frame, "Error launching Minecraft: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -72,4 +69,3 @@ public class App {
         SwingUtilities.invokeLater(App::new);
     }
 }
-
