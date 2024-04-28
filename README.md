@@ -6,3 +6,5 @@
 - Currently, it was built and compiled for Linux, using JDK 21
 - It's meant to directly replace the traditional Minecraft launcher, and have debugging a right.
 - I made it myself :D
+
+![Screenshot](screenshots/image.png)
