@@ -5,6 +5,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.ProcessBuilder;
 
 public class App {
     private JFrame frame;
@@ -59,7 +60,8 @@ public class App {
         File jarPath = new File(projectDir.getAbsolutePath() + "/resources/" + selectedVersion + "/" + selectedVersion + ".jar");
 
         try {
-            Runtime.getRuntime().exec("java -jar " + jarPath);
+            ProcessBuilder processBuilder = new ProcessBuilder("/usr/bin/java", "-jar", jarPath.toString());
+            Process process = processBuilder.start();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(frame, "Error launching Minecraft: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
